@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tarjetas Graficas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <p *ngIf="isLogged">Email: {{ userEmail }}</p>
+  <p *ngIf="isLogged">UID: {{ userUID }}</p>
+  <ion-button *ngIf="!isLogged" (click)="login()">Log in</ion-button>
+  <ion-button *ngIf="isLogged" (click)="logout()">Log out</ion-button>
+
+ <h1>TARJETAS GRAFICAS</h1>
+  <ion-list>
+    <ion-item >
+      <ion-grid>
+        <ion-row>
+        <ion-col *ngFor="let documentGrafica of arrayColeccionGraficas" (click)="selecGrafica(documentGrafica)" size-xl="2" siez-lg="2" size-md="4" size-sm="6" size-xs="12">
+          <ion-card>
+            <ion-card-content>
+              <ion-avatar>
+                <img [src]="documentGrafica.data.imagenURL">
+              </ion-avatar>
+              
+                <h2>{{documentGrafica.data.marca}}</h2>
+              
+                <p>{{documentGrafica.data.ensamblador}}</p>
+              
+                <p>{{documentGrafica.data.modelo}} Gb</p>
+              
+                <p>{{documentGrafica.data.precio}} €</p>
+              
+                <p>{{documentGrafica.data.memoria}} Gb</p>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button *ngIf="isLogged" (click)="clicDetalles()" id="h5">Añadir</ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+
+      <ion-tab-button tab="home">
+        <ion-icon name="ellipse"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="sobre">
+        <ion-icon name="ellipse"></ion-icon>
+        <ion-label>Sobre Nosotros</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>   
+  </ion-tabs>
+</ion-toolbar>
